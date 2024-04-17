@@ -25,8 +25,12 @@ const AllProducts = () => {
   const fetchTokenAndUserId = async () => {
     try {
       // Fetch the JWT token from your server
-      const response = await fetch(SummaryApi.current_user.url);
+      const response = await fetch(SummaryApi.uploadProduct.url, {
+        method : SummaryApi.uploadProduct.method,
+        credentials : 'include'
+      });
       console.log(response)
+      
       if (!response.ok) {
         throw new Error('Failed to fetch token');
       }
@@ -65,7 +69,8 @@ const AllProducts = () => {
       {/**all product */}
       <div className='flex items-center flex-wrap gap-5 py-4 h-[calc(100vh-190px)] overflow-y-scroll'>
         {filteredProducts.map((product, index) => (
-          <AdminProductCard data={product} key={index + "allProduct"} fetchdata={fetchAllProduct} />
+          <AdminProductCard data={product} key={index + "allProduct"} fetchdata={fetchAllProduct} loggedInUserId={loggedInUserId} />
+
         ))}
       </div>
 

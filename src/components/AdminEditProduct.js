@@ -7,16 +7,13 @@ import DisplayImage from './DisplayImage';
 import { MdDelete } from "react-icons/md";
 import SummaryApi from '../common';
 import {toast} from 'react-toastify'
-import { useNavigate } from 'react-router-dom';
-
 
 const AdminEditProduct = ({
     onClose,
     productData,
-  }
-  ) => {
+    fetchdata
+  }) => {
 
-  const navigate = useNavigate();
   const [data,setData] = useState({
     ...productData,
     productName : productData?.productName,
@@ -87,10 +84,8 @@ const AdminEditProduct = ({
 
     if(responseData.success){
         toast.success(responseData?.message)
-        onClose();
-        navigate('/');
-
-
+        onClose()
+        fetchdata()
     }
 
 

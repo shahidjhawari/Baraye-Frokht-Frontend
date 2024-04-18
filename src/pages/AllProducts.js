@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode"; // Corrected import statement
 import UploadProduct from "../components/UploadProduct";
 import SummaryApi from "../common";
 import AdminProductCard from "../components/AdminProductCard";
@@ -10,44 +10,30 @@ const AllProducts = () => {
   const [loggedInUserId, setLoggedInUserId] = useState(null);
 
   const fetchAllProduct = async () => {
-    try {
+      const token = localStorage.getItem("token");
+      console.log("Token from local storage:", token);
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded token:", decodedToken);
+
+        const userId = decodedToken?._id;
+        if (userId) {
+          setLoggedInUserId(userId);
+          console.log("Logged-in user ID:", userId);
+        } else {
+          console.log("User ID not found in token");
+        }
+      }
+
       const response = await fetch(SummaryApi.allProduct.url);
       const dataResponse = await response.json();
       console.log("product data", dataResponse);
       setUserProducts(dataResponse?.data || []);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
   };
 
   useEffect(() => {
-    const fetchTokenAndUserId = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        console.log("Token from local storage:", token); 
-        if (token) {
-          const decodedToken = jwtDecode(token);
-          console.log("Decoded token:", decodedToken); 
-
-          const userId = decodedToken?._id;
-          if (userId) {
-            setLoggedInUserId(userId);
-            console.log("Logged-in user ID:", userId);
-          } else {
-            console.log("User ID not found in token");
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching token:", error);
-      }
-    };
-
-    fetchTokenAndUserId();
-  }, []);
-
-  useEffect(() => {
     fetchAllProduct();
-  }, []); 
+  }, []);
 
   useEffect(() => {
     console.log("Initial user products:", userProducts);
@@ -69,7 +55,7 @@ const AllProducts = () => {
         {userProducts
           .filter((product) => product.userId === loggedInUserId)
           .map((product, index) => (
-            <AdminProductCard data={product} key={index + "allProduct"} />
+            <AdminProductCard data={product} key={index + "allProduct"} fetchdata={fetchAllProduct} />
           ))}
       </div>
 

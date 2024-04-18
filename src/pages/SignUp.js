@@ -3,11 +3,11 @@ import loginIcons from '../assest/signin.gif'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import imageTobase64 from '../helpers/imageTobase64';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
   const [showPassword,setShowPassword] = useState(false)
   const [showConfirmPassword,setShowConfirmPassword] = useState(false)
   const [data,setData] = useState({
@@ -30,19 +30,66 @@ const SignUp = () => {
       })
   }
 
-  const handleUploadPic = async(e) =>{
-    const file = e.target.files[0]
-    
-    const imagePic = await imageTobase64(file)
-    
-    setData((preve)=>{
-      return{
-        ...preve,
-        profilePic : imagePic
-      }
-    })
+  const handleUploadPic = async (e) => {
+    const file = e.target.files[0];
+  
+    // Check if file size exceeds 2MB
+    if (file.size > 2 * 1024 * 1024) {
+      console.error('File size exceeds 2MB limit.');
+      // Handle error or notify the user
+      return;
+    }
+  
+    try {
+      const resizedImage = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const MAX_WIDTH = 300;
+            const MAX_HEIGHT = 300;
+            let width = img.width;
+            let height = img.height;
+  
+            if (width > height) {
+              if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
+              }
+            } else {
+              if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+              }
+            }
+  
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            const resizedDataUrl = canvas.toDataURL('image/jpeg');
+            resolve(resizedDataUrl);
+          };
+        };
+      });
+  
+      setData((prev) => ({
+        ...prev,
+        profilePic: resizedImage,
+      }));
+    } catch (error) {
+      console.error('Error resizing image:', error);
+      // Handle error
+    }
+  };
+  
+  
+  
+  
 
-  }
 
 
   const handleSubmit = async(e) =>{
@@ -90,7 +137,7 @@ const SignUp = () => {
                             <div className='text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer text-center absolute bottom-0 w-full'>
                               Upload  Photo
                             </div>
-                            <input type='file' className='hidden' onChange={handleUploadPic}/>
+                            <input type='file' accept='image/*' onChange={handleUploadPic} />
                           </label>
                         </form>
                     </div>

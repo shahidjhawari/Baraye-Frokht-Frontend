@@ -88,7 +88,7 @@ const AdminEditProduct = ({
     if(responseData.success){
         toast.success(responseData?.message)
         onClose();
-        navigate('/admin-panel/all-products');
+        navigate('/');
 
 
     }

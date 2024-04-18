@@ -85,7 +85,6 @@ const AdminEditProduct = ({
     if(responseData.success){
         toast.success(responseData?.message)
         onClose()
-        fetchdata()
     }
 
 

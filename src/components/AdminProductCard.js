@@ -36,10 +36,10 @@ const AdminProductCard = ({ data, fetchDataCallback }) => {
 
       {editProduct && (
         <AdminEditProduct
-          productData={data}
-          onClose={() => setEditProduct(false)}
-          fetchData={fetchDataCallback}
-        />
+        productData={data}
+        onClose={() => setEditProduct(false)}
+        fetchdata={fetchDataCallback} // Changed from fetchData to fetchdata
+      />
       )}
     </div>
   );

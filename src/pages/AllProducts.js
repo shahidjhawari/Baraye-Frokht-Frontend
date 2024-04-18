@@ -6,7 +6,7 @@ import AdminProductCard from '../components/AdminProductCard';
 
 const AllProducts = () => {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
-  const [allProduct, setAllProduct] = useState([]);
+  const [userProducts, setUserProducts] = useState([]);
   const [loggedInUserId, setLoggedInUserId] = useState(null);
 
   // Function to fetch products
@@ -15,49 +15,50 @@ const AllProducts = () => {
       const response = await fetch(SummaryApi.allProduct.url);
       const dataResponse = await response.json();
       console.log("product data", dataResponse);
-      setAllProduct(dataResponse?.data || []);
+      setUserProducts(dataResponse?.data || []);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
 
-  // Function to fetch token and user ID
-  const fetchTokenAndUserId = async () => {
-    try {
-      // Fetch the JWT token from your server
-      const response = await fetch(SummaryApi.uploadProduct.url, {
-        method : SummaryApi.uploadProduct.method,
-        credentials : 'include'
-      });
-      console.log(response)
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch token');
+  useEffect(() => {
+    const fetchTokenAndUserId = async () => {
+      try {
+        // Fetch the JWT token from local storage
+        const token = localStorage.getItem('token');
+        console.log('Token from local storage:', token); // Log the token value
+        if (token) {
+          // Decode the token to inspect its contents
+          const decodedToken = jwtDecode(token);
+          console.log('Decoded token:', decodedToken); // Log the decoded token
+    
+          // Check if the decoded token contains the userId field
+          const userId = decodedToken?._id;
+          if (userId) {
+            setLoggedInUserId(userId);
+            console.log('Logged-in user ID:', userId); // Log the logged-in user ID
+          } else {
+            console.log('User ID not found in token');
+          }
+        }        
+      } catch (error) {
+        console.error("Error fetching token:", error);
       }
-      
-      const { token } = await response.json();
-      if (!token) {
-        throw new Error('Token not found in response');
-      }
-
-      // Decode the token to extract user ID
-      const decodedToken = jwtDecode(token);
-      const userId = decodedToken.userId; // Assuming userId is the key where user ID is stored
-
-      // Set the user ID state
-      setLoggedInUserId(userId);
-    } catch (error) {
-      console.error("Error fetching token:", error);
-    }
-  };
+    };
+    
+  
+    fetchTokenAndUserId();
+  }, []);
+  
 
   useEffect(() => {
     fetchAllProduct();
-    fetchTokenAndUserId(); // Fetch token and user ID
-  }, []);
+  }, []); // This effect runs once on component mount to fetch products
 
-  // Filter products based on the logged-in user's ID
-  const filteredProducts = allProduct.filter(product => product.userId === loggedInUserId);
+  useEffect(() => {
+    console.log("Initial user products:", userProducts);
+  }, [userProducts]);
+  
 
   return (
     <div>
@@ -68,10 +69,11 @@ const AllProducts = () => {
 
       {/**all product */}
       <div className='flex items-center flex-wrap gap-5 py-4 h-[calc(100vh-190px)] overflow-y-scroll'>
-        {filteredProducts.map((product, index) => (
-          <AdminProductCard data={product} key={index + "allProduct"} fetchdata={fetchAllProduct} loggedInUserId={loggedInUserId} />
-
-        ))}
+        {userProducts
+          .filter(product => product.userId === loggedInUserId)
+          .map((product, index) => (
+            <AdminProductCard data={product} key={index + "allProduct"} />
+          ))}
       </div>
 
       {/**upload product component */}

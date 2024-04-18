@@ -4,8 +4,7 @@ import AdminEditProduct from './AdminEditProduct';
 import displayINRCurrency from '../helpers/displayCurrency';
 
 const AdminProductCard = ({
-    data,
-    fetchdata
+    data
 }) => {
     const [editProduct,setEditProduct] = useState(false)
 
@@ -37,7 +36,7 @@ const AdminProductCard = ({
         
         {
           editProduct && (
-            <AdminEditProduct productData={data} onClose={()=>setEditProduct(false)} fetchdata={fetchdata}/>
+            <AdminEditProduct productData={data} onClose={()=>setEditProduct(false)}/>
           )
         }
     

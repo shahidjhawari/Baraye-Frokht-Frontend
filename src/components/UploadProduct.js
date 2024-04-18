@@ -7,6 +7,7 @@ import DisplayImage from './DisplayImage';
 import { MdDelete } from "react-icons/md";
 import SummaryApi from '../common';
 import {toast} from 'react-toastify'
+import { useNavigate } from 'react-router-dom';
 
 const UploadProduct = ({
     onClose,
@@ -65,6 +66,7 @@ const UploadProduct = ({
 
 
   {/**upload product */}
+  const navigate = useNavigate();
   const handleSubmit = async(e) =>{
     e.preventDefault()
     
@@ -82,7 +84,7 @@ const UploadProduct = ({
     if(responseData.success){
         toast.success(responseData?.message)
         onClose()
-        fetchData()
+        navigate('/');
     }
 
 

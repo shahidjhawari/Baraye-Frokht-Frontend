@@ -5,6 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 import { TextField } from "@mui/material";
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,12 +29,10 @@ const SignUp = () => {
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setData((preve) => {
-      return {
-        ...preve,
-        [name]: value,
-      };
-    });
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleUploadPic = async (e) => {
@@ -83,7 +88,7 @@ const SignUp = () => {
         profilePic: resizedImage,
       }));
     } catch (error) {
-      toast.error("Error resizing image:", error);
+      toast.error("Error resizing image: " + error);
       // Handle error
     }
   };
@@ -129,7 +134,7 @@ const SignUp = () => {
                   Upload Photo
                 </div>
                 <input
-                className='hidden'
+                  className='hidden'
                   type="file"
                   accept="image/*"
                   onChange={handleUploadPic}
@@ -140,67 +145,80 @@ const SignUp = () => {
 
           <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
             <div className="grid">
-                <TextField type="text"
-                  placeholder="Enter Your Name"
-                  name="name"
-                  value={data.name}
-                  onChange={handleOnChange}
-                  required id="standard-basic" label="Name" variant="standard" />
+              <TextField
+                type="text"
+                placeholder="Enter Your Name"
+                name="name"
+                value={data.name}
+                onChange={handleOnChange}
+                required
+                id="standard-basic"
+                label="Name"
+                variant="standard"
+              />
             </div>
             <div className="grid">
-                <TextField
-                  type="email"
-                  placeholder="Enter Your Email"
-                  name="email"
-                  value={data.email}
-                  onChange={handleOnChange}
-                  required id="standard-basic" label="Email" variant="standard"
-                />
+              <TextField
+                type="email"
+                placeholder="Enter Your Email"
+                name="email"
+                value={data.email}
+                onChange={handleOnChange}
+                required
+                id="standard-basic"
+                label="Email"
+                variant="standard"
+              />
             </div>
 
             <div>
-              <label>Password : </label>
-              <div className="bg-slate-100 p-2 flex">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="enter password"
+              <FormControl sx={{ m: 0, width: '100%' }} variant="standard">
+                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={showPassword ? 'text' : 'password'}
                   value={data.password}
                   name="password"
                   onChange={handleOnChange}
                   required
-                  className="w-full h-full outline-none bg-transparent"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword(!showPassword)}
+                        onMouseDown={(e) => e.preventDefault()}
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
-                <div
-                  className="cursor-pointer text-xl"
-                  onClick={() => setShowPassword((preve) => !preve)}
-                >
-                  <span>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
-                </div>
-              </div>
+              </FormControl>
             </div>
 
             <div>
-              <label>Confirm Password : </label>
-              <div className="bg-slate-100 p-2 flex">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="enter confirm password"
+              <FormControl sx={{ m: 0, width: '100%' }} variant="standard">
+                <InputLabel htmlFor="standard-adornment-confirm-password">Confirm Password</InputLabel>
+                <Input
+                  id="standard-adornment-confirm-password"
+                  type={showConfirmPassword ? 'text' : 'password'}
                   value={data.confirmPassword}
                   name="confirmPassword"
                   onChange={handleOnChange}
                   required
-                  className="w-full h-full outline-none bg-transparent"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle confirm password visibility"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        onMouseDown={(e) => e.preventDefault()}
+                      >
+                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
-
-                <div
-                  className="cursor-pointer text-xl"
-                  onClick={() => setShowConfirmPassword((preve) => !preve)}
-                >
-                  <span>
-                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-                  </span>
-                </div>
-              </div>
+              </FormControl>
             </div>
 
             <button
@@ -214,10 +232,10 @@ const SignUp = () => {
           </form>
 
           <p className="my-5">
-            Already have account ?{" "}
+            Already have an account?{" "}
             <Link
               to={"/login"}
-              className=" text-red-600 hover:text-red-700 hover:underline"
+              className="text-red-600 hover:text-red-700 hover:underline"
             >
               Login
             </Link>

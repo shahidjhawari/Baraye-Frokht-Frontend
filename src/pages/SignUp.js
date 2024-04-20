@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import loginIcons from "../assest/signin.gif";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";

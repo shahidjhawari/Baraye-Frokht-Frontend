@@ -146,7 +146,6 @@ const SignUp = () => {
             <div className="grid">
               <TextField
                 type="text"
-                placeholder="Enter Your Name"
                 name="name"
                 value={data.name}
                 onChange={handleOnChange}
@@ -159,7 +158,6 @@ const SignUp = () => {
             <div className="grid">
               <TextField
                 type="email"
-                placeholder="Enter Your Email"
                 name="email"
                 value={data.email}
                 onChange={handleOnChange}

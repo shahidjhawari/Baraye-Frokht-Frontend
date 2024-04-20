@@ -109,14 +109,14 @@ const Login = () => {
                 />
                 <Link
                 to={"/forgot-password"}
-                className="block w-fit ml-auto hover:underline hover:text-red-600"
+                className="block w-fit ml-auto hover:underline hover:text-amber-500"
               >
                 Forgot password ?
               </Link>
               </FormControl>
             </div>
 
-            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
+            <button className="bg-fuchsia-600 hover:bg-amber-500 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6">
               Login
             </button>
           </form>
@@ -125,7 +125,7 @@ const Login = () => {
             Don't have account ?{" "}
             <Link
               to={"/sign-up"}
-              className=" text-red-600 hover:text-red-700 hover:underline"
+              className=" text-fuchsia-600 hover:text-amber-500 hover:underline"
             >
               Sign up
             </Link>

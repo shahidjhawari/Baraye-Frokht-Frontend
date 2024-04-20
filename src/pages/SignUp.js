@@ -220,7 +220,7 @@ const SignUp = () => {
 
             <button
               disabled={fileSizeError}
-              className={`bg-red-600 hover:bg-red-700 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6 ${
+              className={`bg-fuchsia-600 hover:bg-amber-500 text-white px-6 py-2 w-full max-w-[150px] rounded-full hover:scale-110 transition-all mx-auto block mt-6 ${
                 fileSizeError ? "cursor-not-allowed opacity-50" : ""
               }`}
             >
@@ -232,7 +232,7 @@ const SignUp = () => {
             Already have an account?{" "}
             <Link
               to={"/login"}
-              className="text-red-600 hover:text-red-700 hover:underline"
+              className="text-fuchsia-600 hover:text-amber-500 "
             >
               Login
             </Link>

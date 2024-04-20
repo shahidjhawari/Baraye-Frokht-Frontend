@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
+import { TextField } from "@mui/material";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -139,32 +140,22 @@ const SignUp = () => {
 
           <form className="pt-6 flex flex-col gap-2" onSubmit={handleSubmit}>
             <div className="grid">
-              <label>Name : </label>
-              <div className="bg-slate-100 p-2">
-                <input
-                  type="text"
-                  placeholder="enter your name"
+                <TextField type="text"
+                  placeholder="Enter Your Name"
                   name="name"
                   value={data.name}
                   onChange={handleOnChange}
-                  required
-                  className="w-full h-full outline-none bg-transparent"
-                />
-              </div>
+                  required id="standard-basic" label="Name" variant="standard" />
             </div>
             <div className="grid">
-              <label>Email : </label>
-              <div className="bg-slate-100 p-2">
-                <input
+                <TextField
                   type="email"
-                  placeholder="enter email"
+                  placeholder="Enter Your Email"
                   name="email"
                   value={data.email}
                   onChange={handleOnChange}
-                  required
-                  className="w-full h-full outline-none bg-transparent"
+                  required id="standard-basic" label="Email" variant="standard"
                 />
-              </div>
             </div>
 
             <div>

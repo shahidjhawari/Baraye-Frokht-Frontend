@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {jwtDecode} from "jwt-decode"; // Corrected import statement
+import { jwtDecode } from "jwt-decode"; // Corrected import statement
 import UploadProduct from "../components/UploadProduct";
 import SummaryApi from "../common";
 import AdminProductCard from "../components/AdminProductCard";
@@ -10,25 +10,25 @@ const AllProducts = () => {
   const [loggedInUserId, setLoggedInUserId] = useState(null);
 
   const fetchAllProduct = async () => {
-      const token = localStorage.getItem("token");
-      console.log("Token from local storage:", token);
-      if (token) {
-        const decodedToken = jwtDecode(token);
-        console.log("Decoded token:", decodedToken);
+    const token = localStorage.getItem("token");
+    console.log("Token from local storage:", token);
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      console.log("Decoded token:", decodedToken);
 
-        const userId = decodedToken?._id;
-        if (userId) {
-          setLoggedInUserId(userId);
-          console.log("Logged-in user ID:", userId);
-        } else {
-          console.log("User ID not found in token");
-        }
+      const userId = decodedToken?._id;
+      if (userId) {
+        setLoggedInUserId(userId);
+        console.log("Logged-in user ID:", userId);
+      } else {
+        console.log("User ID not found in token");
       }
+    }
 
-      const response = await fetch(SummaryApi.allProduct.url);
-      const dataResponse = await response.json();
-      console.log("product data", dataResponse);
-      setUserProducts(dataResponse?.data || []);
+    const response = await fetch(SummaryApi.allProduct.url);
+    const dataResponse = await response.json();
+    console.log("product data", dataResponse);
+    setUserProducts(dataResponse?.data || []);
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const AllProducts = () => {
       <div className="bg-white py-2 px-4 flex justify-between items-center">
         <h2 className="font-bold text-lg">All Product</h2>
         <button
-          className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all py-1 px-3 rounded-full "
+          className="border-2 bg-fuchsia-600 text-white hover:bg-amber-500 hover:text-white transition-all py-1 px-3 rounded-full "
           onClick={() => setOpenUploadProduct(true)}
         >
           Upload Product
@@ -55,7 +55,11 @@ const AllProducts = () => {
         {userProducts
           .filter((product) => product.userId === loggedInUserId)
           .map((product, index) => (
-            <AdminProductCard data={product} key={index + "allProduct"} fetchdata={fetchAllProduct} />
+            <AdminProductCard
+              data={product}
+              key={index + "allProduct"}
+              fetchdata={fetchAllProduct}
+            />
           ))}
       </div>
 

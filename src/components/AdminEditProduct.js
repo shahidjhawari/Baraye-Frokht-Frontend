@@ -1,100 +1,91 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { CgClose } from "react-icons/cg";
-import productCategory from '../helpers/productCategory';
+import productCategory from "../helpers/productCategory";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import uploadImage from '../helpers/uploadImage';
-import DisplayImage from './DisplayImage';
+import uploadImage from "../helpers/uploadImage";
+import DisplayImage from "./DisplayImage";
 import { MdDelete } from "react-icons/md";
-import SummaryApi from '../common';
-import {toast} from 'react-toastify'
+import SummaryApi from "../common";
+import { toast } from "react-toastify";
 
-const AdminEditProduct = ({
-    onClose,
-    productData,
-    fetchdata
-  }) => {
-
-  const [data,setData] = useState({
+const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
+  const [data, setData] = useState({
     ...productData,
-    productName : productData?.productName,
-    brandName : productData?.brandName,
-    category : productData?.category,
-    productImage : productData?.productImage || [],
-    description : productData?.description,
-    price : productData?.price,
-    sellingPrice : productData?.sellingPrice
-  })
-  const [openFullScreenImage,setOpenFullScreenImage] = useState(false)
-  const [fullScreenImage,setFullScreenImage] = useState("")
+    productName: productData?.productName,
+    brandName: productData?.brandName,
+    category: productData?.category,
+    productImage: productData?.productImage || [],
+    description: productData?.description,
+    price: productData?.price,
+    sellingPrice: productData?.sellingPrice,
+  });
+  const [openFullScreenImage, setOpenFullScreenImage] = useState(false);
+  const [fullScreenImage, setFullScreenImage] = useState("");
 
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
 
-  const handleOnChange = (e)=>{
-      const { name, value} = e.target
-
-      setData((preve)=>{
-        return{
-          ...preve,
-          [name]  : value
-        }
-      })
-  }
-
-  const handleUploadProduct = async(e) => {
-    const file = e.target.files[0]
-    const uploadImageCloudinary = await uploadImage(file)
-
-    setData((preve)=>{
-      return{
+    setData((preve) => {
+      return {
         ...preve,
-        productImage : [ ...preve.productImage, uploadImageCloudinary.url]
-      }
-    })
-  }
+        [name]: value,
+      };
+    });
+  };
 
-  const handleDeleteProductImage = async(index)=>{
-    console.log("image index",index)
-    
-    const newProductImage = [...data.productImage]
-    newProductImage.splice(index,1)
+  const handleUploadProduct = async (e) => {
+    const file = e.target.files[0];
+    const uploadImageCloudinary = await uploadImage(file);
 
-    setData((preve)=>{
-      return{
+    setData((preve) => {
+      return {
         ...preve,
-        productImage : [...newProductImage]
-      }
-    })
-    
+        productImage: [...preve.productImage, uploadImageCloudinary.url],
+      };
+    });
+  };
+
+  const handleDeleteProductImage = async (index) => {
+    console.log("image index", index);
+
+    const newProductImage = [...data.productImage];
+    newProductImage.splice(index, 1);
+
+    setData((preve) => {
+      return {
+        ...preve,
+        productImage: [...newProductImage],
+      };
+    });
+  };
+
+  {
+    /**upload product */
   }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-
-  {/**upload product */}
-  const handleSubmit = async(e) =>{
-    e.preventDefault()
-    
-    const response = await fetch(SummaryApi.updateProduct.url,{
-      method : SummaryApi.updateProduct.method,
-      credentials : 'include',
-      headers : {
-        "content-type" : "application/json"
+    const response = await fetch(SummaryApi.updateProduct.url, {
+      method: SummaryApi.updateProduct.method,
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
       },
-      body : JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
 
-    const responseData = await response.json()
+    const responseData = await response.json();
 
-    if(responseData.success){
-        toast.success(responseData?.message)
-        onClose()
-        fetchdata()
+    if (responseData.success) {
+      toast.success(responseData?.message);
+      onClose();
+      fetchdata();
     }
 
-
-    if(responseData.error){
-      toast.error(responseData?.message)
+    if (responseData.error) {
+      toast.error(responseData?.message);
     }
-  
-
-  }
+  };
 
   return (
     <div className="fixed w-full  h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
@@ -253,7 +244,7 @@ const AdminEditProduct = ({
             value={data.description}
           ></textarea>
 
-          <button className="px-3 py-2 bg-red-600 text-white mb-10 hover:bg-red-700">
+          <button className="px-3 py-2 bg-fuchsia-600 text-white mb-10 hover:bg-amber-500">
             Upload Product
           </button>
         </form>
@@ -268,6 +259,6 @@ const AdminEditProduct = ({
       )}
     </div>
   );
-}
+};
 
-export default AdminEditProduct
+export default AdminEditProduct;

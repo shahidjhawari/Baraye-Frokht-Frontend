@@ -10,17 +10,17 @@ const Home = () => {
       <CategoryList/>
       <BannerProduct/>
 
-      <HorizontalCardProduct category={"airpodes"} heading={"Electronic"}/>
-      <HorizontalCardProduct category={"watches"} heading={"Popular's Watches"}/>
+      <HorizontalCardProduct category={"airpodes"} heading={"Top's Mobiles"}/>
+      <HorizontalCardProduct category={"watches"} heading={"Top's Electronic"}/>
 
-      <VerticalCardProduct category={"mobiles"} heading={"Mobiles"}/>
-      <VerticalCardProduct category={"Mouse"} heading={"Mouse"}/>
-      <VerticalCardProduct category={"televisions"} heading={"Televisions"}/>
-      <VerticalCardProduct category={"camera"} heading={"Camera & Photography"}/>
-      <VerticalCardProduct category={"earphones"} heading={"Wired Earphones"}/>
-      <VerticalCardProduct category={"speakers"} heading={"Bluetooth Speakers"}/>
-      <VerticalCardProduct category={"refrigerator"} heading={"Refrigerator"}/>
-      <VerticalCardProduct category={"trimmers"} heading={"Trimmers"}/>
+      <VerticalCardProduct category={"mobiles"} heading={"Home Appliances"}/>
+      <VerticalCardProduct category={"Mouse"} heading={"Bikes"}/>
+      <VerticalCardProduct category={"televisions"} heading={"Property"}/>
+      <VerticalCardProduct category={"camera"} heading={"Services"}/>
+      <VerticalCardProduct category={"earphones"} heading={"Fashion"}/>
+      <VerticalCardProduct category={"speakers"} heading={"Books"}/>
+      <VerticalCardProduct category={"refrigerator"} heading={"Pets"}/>
+      <VerticalCardProduct category={"trimmers"} heading={"Other"}/>
     </div>
   )
 }

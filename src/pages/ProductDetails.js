@@ -198,13 +198,18 @@ const ProductDetails = () => {
                 </div>
 
                 <div className='flex items-center gap-2 text-2xl lg:text-3xl font-medium my-1'>
-                  <p className='text-red-600'>{displayINRCurrency(data.price)}</p>
+                  <p className='text-fuchsia-600'>{displayINRCurrency(data.price)}</p>
                 </div>
 
                 <div className='flex items-center gap-3 my-2'>
                 <p className='bg-red-200 text-red-600 px-2 rounded-full inline-block w-fit'>{data?.brandName}</p>
                   {/* <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white' onClick={(e)=>handleBuyProduct(e,data?._id)}>Buy</button> */}
                   {/* <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:text-red-600 hover:bg-white' onClick={(e)=>handleAddToCart(e,data?._id)}>Add To Cart</button> */}
+                </div>
+
+                <div>
+                  <p className='text-slate-600 font-medium my-1'>Contact Number : </p>
+                  <p>{data.sellingPrice}</p>
                 </div>
 
                 <div>

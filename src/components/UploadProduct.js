@@ -109,7 +109,7 @@ const UploadProduct = ({
             <input 
               type='text' 
               id='productName' 
-              placeholder='enter product name' 
+              placeholder='Product Name' 
               name='productName'
               value={data.productName} 
               onChange={handleOnChange}
@@ -118,11 +118,11 @@ const UploadProduct = ({
             />
 
 
-            <label htmlFor='brandName' className='mt-3'>Brand Name :</label>
+            <label htmlFor='brandName' className='mt-3'>Your Name :</label>
             <input 
               type='text' 
               id='brandName' 
-              placeholder='enter brand name' 
+              placeholder='Enter Your Name' 
               value={data.brandName} 
               name='brandName'
               onChange={handleOnChange}
@@ -187,11 +187,11 @@ const UploadProduct = ({
                   
               </div>
 
-              <label htmlFor='price' className='mt-3'>Price :</label>
+              <label htmlFor='price' className='mt-3'>Selling Price :</label>
               <input 
                 type='number' 
                 id='price' 
-                placeholder='enter price' 
+                placeholder='Enter Selling Price' 
                 value={data.price} 
                 name='price'
                 onChange={handleOnChange}
@@ -200,11 +200,11 @@ const UploadProduct = ({
               />
 
 
-              <label htmlFor='sellingPrice' className='mt-3'>Selling Price :</label>
+              <label htmlFor='sellingPrice' className='mt-3'>Contact Number :</label>
               <input 
                 type='number' 
                 id='sellingPrice' 
-                placeholder='enter selling price' 
+                placeholder='Enter Contact Number' 
                 value={data.sellingPrice} 
                 name='sellingPrice'
                 onChange={handleOnChange}

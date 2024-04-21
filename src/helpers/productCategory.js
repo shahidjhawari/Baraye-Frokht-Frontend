@@ -10,7 +10,6 @@ const productCategory = [
     { id : 9, label : "Books", value : "books"},
     { id : 10, label : "Pets", value : "pets"},
     { id : 11, label : "Other", value : "other"},
-    { id : 12, label : "Watches", value : "watches"},
 ]
 
 

@@ -10,17 +10,17 @@ const Home = () => {
       <CategoryList/>
       <BannerProduct/>
 
-      <HorizontalCardProduct category={"airpodes"} heading={"Top's Mobiles"}/>
-      <HorizontalCardProduct category={"watches"} heading={"Top's Electronic"}/>
+      <HorizontalCardProduct category={"mobiles"} heading={"Top's Mobiles"}/>
+      <HorizontalCardProduct category={"electronic"} heading={"Top's Electronic"}/>
 
-      <VerticalCardProduct category={"mobiles"} heading={"Home Appliances"}/>
-      <VerticalCardProduct category={"Mouse"} heading={"Bikes"}/>
-      <VerticalCardProduct category={"televisions"} heading={"Property"}/>
-      <VerticalCardProduct category={"camera"} heading={"Services"}/>
-      <VerticalCardProduct category={"earphones"} heading={"Fashion"}/>
-      <VerticalCardProduct category={"speakers"} heading={"Books"}/>
-      <VerticalCardProduct category={"refrigerator"} heading={"Pets"}/>
-      <VerticalCardProduct category={"trimmers"} heading={"Other"}/>
+      <VerticalCardProduct category={"appliances"} heading={"Home Appliances"}/>
+      <VerticalCardProduct category={"bikes"} heading={"Bikes"}/>
+      <VerticalCardProduct category={"property"} heading={"Property"}/>
+      <VerticalCardProduct category={"services"} heading={"Services"}/>
+      <VerticalCardProduct category={"fashion"} heading={"Fashion"}/>
+      <VerticalCardProduct category={"books"} heading={"Books"}/>
+      <VerticalCardProduct category={"pets"} heading={"Pets"}/>
+      <VerticalCardProduct category={"other"} heading={"Other"}/>
     </div>
   )
 }

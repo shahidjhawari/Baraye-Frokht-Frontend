@@ -223,7 +223,7 @@ const UploadProduct = ({ onClose, fetchData }) => {
           <input
             type="text"
             id="brandName"
-            placeholder="Enter Your Address"
+            placeholder="EID Gah Mohala, Jhawarian"
             value={data.brandName}
             name="brandName"
             onChange={handleOnChange}

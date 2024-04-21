@@ -63,7 +63,7 @@ const Header = () => {
         <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-4 p-1">
           <input
             type="text"
-            placeholder="search product here..."
+            placeholder="Search here..."
             className="w-full outline-none"
             onChange={handleSearch}
             value={search}

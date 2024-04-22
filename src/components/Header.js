@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import Logo from "./Logo";
 import { GrSearch } from "react-icons/gr";
-import { FaRegCircleUser } from "react-icons/fa6";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaRegCircleUser, FaSearch } from "react-icons/fa";
+import { FaUserCircle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SummaryApi from "../common";
@@ -21,6 +21,7 @@ const Header = () => {
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
   const [search, setSearch] = useState(searchQuery);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleLogout = async () => {
     const fetchData = await fetch(SummaryApi.logout_user.url, {
@@ -51,6 +52,11 @@ const Header = () => {
       navigate("/search");
     }
   };
+
+  const toggleSearch = () => {
+    setIsSearchOpen((prev) => !prev);
+  };
+
   return (
     <header className="h-16 shadow-md bg-white fixed w-full z-40">
       <div className=" h-full container mx-auto flex items-center px-4 justify-between">
@@ -60,7 +66,20 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-4 p-1">
+        <div className="lg:hidden">
+          <button
+            onClick={toggleSearch}
+            className="text-2xl relative flex items-center justify-center"
+          >
+            <FaSearch />
+          </button>
+        </div>
+
+        <div
+          className={`${
+            isSearchOpen ? "block" : "hidden"
+          } lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-4 p-1`}
+        >
           <input
             type="text"
             placeholder="Search here..."
@@ -85,7 +104,7 @@ const Header = () => {
                       alt={user?.name}
                     />
                   ) : (
-                    <FaRegCircleUser />
+                    <FaUserCircle />
                   )}
                 </Link>
               </div>

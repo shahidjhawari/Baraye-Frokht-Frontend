@@ -66,14 +66,14 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="lg:hidden">
+        {/* <div className="lg:hidden">
           <button
             onClick={toggleSearch}
             className="text-2xl relative flex items-center justify-center"
           >
             <FaSearch />
           </button>
-        </div>
+        </div> */}
 
         <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2">
           <input
@@ -88,16 +88,16 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Search box for mobile devices */}
-        <div className="lg:hidden fixed top-16 left-0 w-full bg-white z-50">
-          <input
-            type="text"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-            placeholder="Search..."
-            onChange={(e) => handleSearch(e.target.value)}
-            value={search}
-          />
-        </div>
+        <div className="lg:hidden absolute top-12 left-0 w-full bg-white z-50 mt-4 mb-4">
+  <input
+    type="text"
+    className="w-full px-2 border border-gray-300"
+    placeholder="Search..."
+    onChange={(e) => handleSearch(e.target.value)}
+    value={search}
+  />
+</div>
+
 
         <div className="flex items-center gap-7">
           <div className="relative flex justify-center">

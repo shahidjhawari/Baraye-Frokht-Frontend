@@ -24,7 +24,7 @@ const SearchProduct = () => {
     },[query])
 
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container mx-auto p-4 my-6'>
       {
         loading && (
           <p className='text-lg text-center'>Loading ...</p>

@@ -16,7 +16,8 @@ const Header = () => {
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
   const [search, setSearch] = useState("");
-  const [showSearch, setShowSearch] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [desktopSearch, setDesktopSearch] = useState("");
 
   useEffect(() => {
     setSearch(searchQuery.join(""));
@@ -43,7 +44,7 @@ const Header = () => {
     }
   };
 
-  const handleSearch = (value) => {
+  const handleMobileSearch = (value) => {
     setSearch(value);
 
     if (value) {
@@ -53,8 +54,18 @@ const Header = () => {
     }
   };
 
-  const toggleSearch = () => {
-    setShowSearch((prev) => !prev);
+  const handleDesktopSearch = (value) => {
+    setDesktopSearch(value);
+
+    if (value) {
+      navigate(`/search?q=${value}`);
+    } else {
+      navigate("/search");
+    }
+  };
+
+  const toggleMobileSearch = () => {
+    setShowMobileSearch((prev) => !prev);
     setSearch(""); // Clear search when toggling
   };
 
@@ -69,23 +80,36 @@ const Header = () => {
 
         <div className="lg:hidden">
           <button
-            onClick={toggleSearch}
+            onClick={toggleMobileSearch}
             className="text-2xl relative flex items-center justify-center"
           >
             <FaSearch />
           </button>
         </div>
 
-        <div className="lg:hidden absolute top-12 left-0 w-full bg-white z-50 mt-4 mb-4">
-          {showSearch && (
+        {showMobileSearch && (
+          <div className="lg:hidden absolute top-12 left-0 w-full bg-white z-50 mt-4 mb-4">
             <input
               type="text"
               className="w-full bg-fuchsia-600 text-white placeholder-white px-2 outline-none border border-gray-300"
               placeholder="Search..."
-              onChange={(e) => handleSearch(e.target.value)}
+              onChange={(e) => handleMobileSearch(e.target.value)}
               value={search}
             />
-          )}
+          </div>
+        )}
+
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2">
+          <input
+            type="text"
+            placeholder="Search product here..."
+            className="w-full outline-none"
+            onChange={(e) => handleDesktopSearch(e.target.value)}
+            value={desktopSearch}
+          />
+          <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
+            <GrSearch />
+          </div>
         </div>
 
         <div className="flex items-center gap-7">

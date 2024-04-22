@@ -14,7 +14,7 @@ import Context from "../context";
 // Define the SearchBox component
 function SearchBox() {
   return (
-    <div className="fixed top-0 left-0 w-full bg-white z-50">
+    <div className="fixed top-16 left-0 w-full bg-white z-50">
       <input
         type="text"
         className="w-full px-4 py-2 border border-gray-300 rounded-lg"
@@ -90,7 +90,24 @@ const Header = () => {
         </div>
 
         {/* Render the SearchBox component based on the state */}
-        {isSearchOpen && <SearchBox />}
+        {isSearchOpen && (
+          <div className='lg:hidden'>
+            <SearchBox />
+          </div>
+        )}
+
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2">
+          <input
+            type="text"
+            placeholder="search product here..."
+            className="w-full outline-none"
+            onChange={handleSearch}
+            value={search}
+          />
+          <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
+            <GrSearch />
+          </div>
+        </div>
 
         <div className="flex items-center gap-7">
           <div className="relative flex justify-center">

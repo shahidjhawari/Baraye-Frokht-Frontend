@@ -15,27 +15,30 @@ const Header = () => {
   const searchInput = useLocation();
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
-  const [search, setSearch] = useState(searchQuery);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    setSearch(searchQuery);
+    setSearch(searchQuery.join(""));
   }, [searchQuery]);
 
   const handleLogout = async () => {
-    const fetchData = await fetch(SummaryApi.logout_user.url, {
-      method: SummaryApi.logout_user.method,
-      credentials: "include",
-    });
+    try {
+      const fetchData = await fetch(SummaryApi.logout_user.url, {
+        method: SummaryApi.logout_user.method,
+        credentials: "include",
+      });
 
-    const data = await fetchData.json();
+      const data = await fetchData.json();
 
-    if (data.success) {
-      toast.success(data.message);
-      dispatch(setUserDetails(null));
-      navigate("/");
-    } else {
-      toast.error(data.message);
+      if (data.success) {
+        toast.success(data.message);
+        dispatch(setUserDetails(null));
+        navigate("/");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
   };
 
@@ -49,9 +52,9 @@ const Header = () => {
     }
   };
 
-  // Toggle search box visibility
   const toggleSearch = () => {
-    setIsSearchOpen((prev) => !prev);
+    setSearch("");
+    navigate("/search");
   };
 
   return (
@@ -65,26 +68,12 @@ const Header = () => {
 
         <div className="lg:hidden">
           <button
-            onClick={toggleSearch} // Toggle search box visibility when clicked
+            onClick={toggleSearch}
             className="text-2xl relative flex items-center justify-center"
           >
             <FaSearch />
           </button>
         </div>
-
-        {isSearchOpen && (
-          <div className="lg:hidden">
-            <div className="fixed top-16 left-0 w-full bg-white z-50">
-              <input
-                type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                placeholder="Search..."
-                onChange={(e) => handleSearch(e.target.value)}
-                value={search}
-              />
-            </div>
-          </div>
-        )}
 
         <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2">
           <input
@@ -97,6 +86,17 @@ const Header = () => {
           <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
             <GrSearch />
           </div>
+        </div>
+
+        {/* Search box for mobile devices */}
+        <div className="lg:hidden fixed top-16 left-0 w-full bg-white z-50">
+          <input
+            type="text"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+            placeholder="Search..."
+            onChange={(e) => handleSearch(e.target.value)}
+            value={search}
+          />
         </div>
 
         <div className="flex items-center gap-7">

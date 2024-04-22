@@ -16,6 +16,7 @@ const Header = () => {
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
   const [search, setSearch] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     setSearch(searchQuery.join(""));
@@ -53,8 +54,8 @@ const Header = () => {
   };
 
   const toggleSearch = () => {
-    setSearch("");
-    navigate("/search");
+    setShowSearch((prev) => !prev);
+    setSearch(""); // Clear search when toggling
   };
 
   return (
@@ -66,36 +67,25 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* <div className="lg:hidden">
+        <div className="lg:hidden">
           <button
             onClick={toggleSearch}
             className="text-2xl relative flex items-center justify-center"
           >
             <FaSearch />
           </button>
-        </div> */}
-
-        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2">
-          <input
-            type="text"
-            placeholder="search product here..."
-            className="w-full outline-none"
-            onChange={(e) => handleSearch(e.target.value)}
-            value={search}
-          />
-          <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
-            <GrSearch />
-          </div>
         </div>
 
         <div className="lg:hidden absolute top-12 left-0 w-full bg-white z-50 mt-4 mb-4">
-          <input
-            type="text"
-            className="w-full bg-fuchsia-600 text-white placeholder-white px-2 outline-none border border-gray-300"
-            placeholder="Search..."
-            onChange={(e) => handleSearch(e.target.value)}
-            value={search}
-          />
+          {showSearch && (
+            <input
+              type="text"
+              className="w-full bg-fuchsia-600 text-white placeholder-white px-2 outline-none border border-gray-300"
+              placeholder="Search..."
+              onChange={(e) => handleSearch(e.target.value)}
+              value={search}
+            />
+          )}
         </div>
 
         <div className="flex items-center gap-7">

@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { setUserDetails } from "../store/userSlice";
 import ROLE from "../common/role";
 import Context from "../context";
+import SearchModal from "./SearchModal";
 
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
@@ -68,7 +69,7 @@ const Header = () => {
 
         <div className="lg:hidden">
           <button
-            onClick={toggleSearch}
+            onClick={SearchModal}
             className="text-2xl relative flex items-center justify-center"
           >
             <FaSearch />

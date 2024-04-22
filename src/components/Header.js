@@ -11,19 +11,6 @@ import { setUserDetails } from "../store/userSlice";
 import ROLE from "../common/role";
 import Context from "../context";
 
-// Define the SearchBox component
-function SearchBox() {
-  return (
-    <div className="fixed top-16 left-0 w-full bg-white z-50">
-      <input
-        type="text"
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-        placeholder="Search..."
-      />
-    </div>
-  );
-}
-
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
@@ -70,6 +57,21 @@ const Header = () => {
   const toggleSearch = () => {
     setIsSearchOpen((prev) => !prev);
   };
+
+  // Define the SearchBox component
+  function SearchBox() {
+    return (
+      <div className="fixed top-16 left-0 w-full bg-white z-50">
+        <input
+          type="text"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+          placeholder="Search..."
+          onChange={handleSearch}
+          value={search}
+        />
+      </div>
+    );
+  }
 
   return (
     <header className="h-16 shadow-md bg-white fixed w-full z-40">

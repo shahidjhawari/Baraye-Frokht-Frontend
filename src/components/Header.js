@@ -83,7 +83,7 @@ const Header = () => {
             onClick={toggleMobileSearch}
             className="text-2xl relative flex items-center justify-center"
           >
-            <FaSearch />
+            <FaSearch className="text-fuchsia-600" />
           </button>
         </div>
 

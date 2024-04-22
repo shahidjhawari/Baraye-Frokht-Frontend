@@ -58,7 +58,7 @@ const Header = () => {
   };
 
   return (
-    <header className="h-16 shadow-md bg-white fixed w-full z-40">
+    <header className="h-16 shadow-md bg-white py-2 fixed w-full z-40">
       <div className="container mx-auto flex items-center px-4 justify-between">
         <div>
           <Link to={"/"}>
@@ -88,16 +88,15 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="lg:hidden absolute top-12 left-0 w-full bg-white z-50 mt-4 mb-4">
-  <input
-    type="text"
-    className="w-full px-2 border border-gray-300"
-    placeholder="Search..."
-    onChange={(e) => handleSearch(e.target.value)}
-    value={search}
-  />
-</div>
-
+        <div className="lg:hidden absolute top-14 left-0 w-full bg-white z-50 mt-4 mb-4">
+          <input
+            type="text"
+            className="w-full px-2 outline-none border-gray-300"
+            placeholder="Search..."
+            onChange={(e) => handleSearch(e.target.value)}
+            value={search}
+          />
+        </div>
 
         <div className="flex items-center gap-7">
           <div className="relative flex justify-center">

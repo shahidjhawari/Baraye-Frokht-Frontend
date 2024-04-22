@@ -1,27 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 import { GrSearch } from "react-icons/gr";
-import { FaRegCircleUser, FaSearch } from "react-icons/fa";
-import { FaUserCircle } from 'react-icons/fa';
+import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SummaryApi from "../common";
 import { toast } from "react-toastify";
 import { setUserDetails } from "../store/userSlice";
-import ROLE from "../common/role";
-import Context from "../context";
 
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
-  const [menuDisplay, setMenuDisplay] = useState(false);
-  const context = useContext(Context);
   const navigate = useNavigate();
   const searchInput = useLocation();
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
   const [search, setSearch] = useState(searchQuery);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  useEffect(() => {
+    setSearch(searchQuery);
+  }, [searchQuery]);
 
   const handleLogout = async () => {
     const fetchData = await fetch(SummaryApi.logout_user.url, {
@@ -35,15 +34,12 @@ const Header = () => {
       toast.success(data.message);
       dispatch(setUserDetails(null));
       navigate("/");
-    }
-
-    if (data.error) {
+    } else {
       toast.error(data.message);
     }
   };
 
-  const handleSearch = (e) => {
-    const { value } = e.target;
+  const handleSearch = (value) => {
     setSearch(value);
 
     if (value) {
@@ -58,25 +54,10 @@ const Header = () => {
     setIsSearchOpen((prev) => !prev);
   };
 
-  // Define the SearchBox component
-  function SearchBox() {
-    return (
-      <div className="fixed top-16 left-0 w-full bg-white z-50">
-        <input
-          type="text"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-          placeholder="Search..."
-          onChange={handleSearch}
-          value={search}
-        />
-      </div>
-    );
-  }
-
   return (
     <header className="h-16 shadow-md bg-white fixed w-full z-40">
-      <div className=" h-full container mx-auto flex items-center px-4 justify-between">
-        <div className="">
+      <div className="container mx-auto flex items-center px-4 justify-between">
+        <div>
           <Link to={"/"}>
             <Logo w={120} h={50} />
           </Link>
@@ -91,10 +72,17 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Render the SearchBox component based on the state */}
         {isSearchOpen && (
-          <div className='lg:hidden'>
-            <SearchBox />
+          <div className="lg:hidden">
+            <div className="fixed top-16 left-0 w-full bg-white z-50">
+              <input
+                type="text"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Search..."
+                onChange={(e) => handleSearch(e.target.value)}
+                value={search}
+              />
+            </div>
           </div>
         )}
 
@@ -103,7 +91,7 @@ const Header = () => {
             type="text"
             placeholder="search product here..."
             className="w-full outline-none"
-            onChange={handleSearch}
+            onChange={(e) => handleSearch(e.target.value)}
             value={search}
           />
           <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">

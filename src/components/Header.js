@@ -91,7 +91,7 @@ const Header = () => {
         <div className="lg:hidden absolute top-12 left-0 w-full bg-white z-50 mt-4 mb-4">
           <input
             type="text"
-            className="w-full px-2 outline-none border border-gray-300"
+            className="w-full bg-fuchsia-600 text-white placeholder-white px-2 outline-none border border-gray-300"
             placeholder="Search..."
             onChange={(e) => handleSearch(e.target.value)}
             value={search}

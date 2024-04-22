@@ -10,7 +10,19 @@ import { toast } from "react-toastify";
 import { setUserDetails } from "../store/userSlice";
 import ROLE from "../common/role";
 import Context from "../context";
-import SearchModal from "./SearchModal";
+
+// Define the SearchBox component
+function SearchBox() {
+  return (
+    <div className="fixed top-0 left-0 w-full bg-white z-50">
+      <input
+        type="text"
+        className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+        placeholder="Search..."
+      />
+    </div>
+  );
+}
 
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
@@ -54,6 +66,7 @@ const Header = () => {
     }
   };
 
+  // Toggle search box visibility
   const toggleSearch = () => {
     setIsSearchOpen((prev) => !prev);
   };
@@ -69,29 +82,15 @@ const Header = () => {
 
         <div className="lg:hidden">
           <button
-            onClick={SearchModal}
+            onClick={toggleSearch} // Toggle search box visibility when clicked
             className="text-2xl relative flex items-center justify-center"
           >
             <FaSearch />
           </button>
         </div>
 
-        <div
-          className={`${
-            isSearchOpen ? "block" : "hidden"
-          } lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-4 p-1`}
-        >
-          <input
-            type="text"
-            placeholder="Search here..."
-            className="w-full outline-none"
-            onChange={handleSearch}
-            value={search}
-          />
-          <div className="text-lg min-w-[50px] h-11 bg-fuchsia-600 flex items-center justify-center rounded-r-full text-white">
-            <GrSearch />
-          </div>
-        </div>
+        {/* Render the SearchBox component based on the state */}
+        {isSearchOpen && <SearchBox />}
 
         <div className="flex items-center gap-7">
           <div className="relative flex justify-center">

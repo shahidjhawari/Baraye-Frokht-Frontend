@@ -40,7 +40,7 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
         {loading
           ? loadingList.map((product, index) => {
               return (
-                <div
+                <div key={index}
                   className="w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white rounded-sm shadow "
                   style={{ marginBottom: "10px" }}
                 >
@@ -59,7 +59,7 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
             })
           : data.map((product, index) => {
               return (
-                <Link
+                <Link key={product._id}
                   to={"/product/" + product?._id}
                   className="w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white rounded-sm shadow "
                   onClick={scrollTop}

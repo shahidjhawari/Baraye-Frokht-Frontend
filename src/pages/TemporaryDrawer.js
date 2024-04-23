@@ -32,17 +32,11 @@ export default function TemporaryDrawer({ handleSortBy, handleSelectCategory }) 
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton onClick={() => handleSortBy('asc')}>
-                <ListItemIcon>
-                  <InboxIcon />
-                </ListItemIcon>
                 <ListItemText primary="Price - Low to High" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton onClick={() => handleSortBy('dsc')}>
-                <ListItemIcon>
-                  <MailIcon />
-                </ListItemIcon>
                 <ListItemText primary="Price - High to Low" />
               </ListItemButton>
             </ListItem>

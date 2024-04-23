@@ -37,7 +37,7 @@ const AdminPanel = () => {
                         {user?.role !== ROLE.ADMIN && (
                             <Link to={"all-users"} className='px-2 py-1 hover:bg-slate-100'>All Users</Link>
                         )}
-                        <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-100'>All Products</Link>
+                        <Link to={"all-products"} className='px-2 py-1 hover:bg-slate-100 text-center md:text-center'>All Products</Link>
                     </nav>
                 </div>
             </aside>

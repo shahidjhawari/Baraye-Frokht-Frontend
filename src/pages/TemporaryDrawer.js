@@ -6,10 +6,7 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import productCategory from '../helpers/productCategory';
 
 export default function TemporaryDrawer({ handleSortBy, handleSelectCategory }) {
@@ -21,7 +18,9 @@ export default function TemporaryDrawer({ handleSortBy, handleSelectCategory }) 
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+  <Button style={{ color: 'white', backgroundColor: '#191919', padding: '2px 100px' }} onClick={toggleDrawer(true)}><b>Filter</b></Button>
+</div>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
           <List>

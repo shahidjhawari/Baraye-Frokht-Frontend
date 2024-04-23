@@ -19,14 +19,14 @@ export default function TemporaryDrawer({ handleSortBy, handleSelectCategory }) 
   return (
     <div>
       <div style={{ textAlign: 'center', padding: '10px' }}>
-  <Button style={{ color: 'white', backgroundColor: '#191919', padding: '2px 100px' }} onClick={toggleDrawer(true)}><b>Filter</b></Button>
+  <Button style={{ color: 'white', backgroundColor: '#c026d3', padding: '2px 100px' }} onClick={toggleDrawer(true)}><b>Filter</b></Button>
 </div>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
           <List>
             <ListItem disablePadding>
               <ListItemButton>
-                <ListItemText primary="Sort by" />
+                <ListItemText className='text-fuchsia-600' primary="Sort by" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -44,7 +44,7 @@ export default function TemporaryDrawer({ handleSortBy, handleSelectCategory }) 
           <List>
             <ListItem disablePadding>
               <ListItemButton>
-                <ListItemText primary="Category" />
+                <ListItemText className='text-fuchsia-600' primary="All Categories" />
               </ListItemButton>
             </ListItem>
             {productCategory.map((categoryName, index) => (

@@ -16,7 +16,7 @@ const AdminPanel = () => {
 
     return (
         <div className='min-h-[calc(100vh-120px)] md:flex'>
-            <aside className='bg-white min-h-full w-full max-w-full md:max-w-60 customShadow mt-5'>
+           <aside className='bg-white min-h-full w-full max-w-full md:max-w-60 customShadow md:mt-0 mt-5'>
                 <div className='h-32  flex justify-center items-center flex-col'>
                     <div className='text-5xl cursor-pointer relative flex justify-center mt-5'>
                         {

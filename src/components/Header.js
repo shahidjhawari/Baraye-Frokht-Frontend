@@ -107,7 +107,7 @@ const Header = () => {
             onChange={(e) => handleDesktopSearch(e.target.value)}
             value={desktopSearch}
           />
-          <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
+          <div className="text-lg min-w-[50px] h-8 bg-fuchsia-600 flex items-center justify-center rounded-r-full text-white">
             <GrSearch />
           </div>
         </div>

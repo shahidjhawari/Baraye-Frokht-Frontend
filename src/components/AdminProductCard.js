@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import AdminEditProduct from "./AdminEditProduct";
 import displayINRCurrency from "../helpers/displayCurrency";
+import SummaryApi from "../common"; // Import SummaryApi
+import { toast } from "react-toastify"; // Import toast
 
 const AdminProductCard = ({ data, fetchdata }) => {
   const [editProduct, setEditProduct] = useState(false);
 
   const handleDeleteProduct = async () => {
     try {
-      const response = await fetch("/delete-product", {
-        method: "POST",
+      const response = await fetch(SummaryApi.deleteProduct.url, {
+        method: SummaryApi.deleteProduct.method,
         credentials: "include",
         headers: {
           "content-type": "application/json",
@@ -17,11 +19,13 @@ const AdminProductCard = ({ data, fetchdata }) => {
         body: JSON.stringify({ productId: data._id }),
       });
 
-      if (response.ok) {
-        // If the deletion is successful, fetch updated data
-        fetchdata();
+      const responseData = await response.json();
+
+      if (responseData.success) {
+        toast.success(responseData?.message);
+        fetchdata(); // Remove onClose() here
       } else {
-        throw new Error("Failed to delete product");
+        toast.error(responseData?.message);
       }
     } catch (error) {
       console.error(error);
@@ -63,7 +67,7 @@ const AdminProductCard = ({ data, fetchdata }) => {
       {editProduct && (
         <AdminEditProduct
           productData={data}
-          onClose={() => setEditProduct(false)}
+          onClose={() => setEditProduct(false)} // Define onClose function here
           fetchdata={fetchdata}
         />
       )}

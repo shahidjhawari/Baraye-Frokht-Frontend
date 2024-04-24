@@ -52,7 +52,7 @@ const Login = () => {
     if (dataApi.success) {
       localStorage.setItem("token", dataApi.data); 
 
-      toast.success(dataApi.message);
+      toast(dataApi.message);
       navigate("/");
       fetchUserDetails();
       fetchUserAddToCart();

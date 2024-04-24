@@ -113,24 +113,6 @@ const Header = () => {
         </div>
 
         <div className="flex items-center gap-7">
-          <div className="relative flex justify-center">
-            {user?._id && (
-              <div className="text-3xl cursor-pointer relative flex justify-center">
-                <Link to="/admin-panel/all-products">
-                  {user?.profilePic ? (
-                    <img
-                      src={user?.profilePic}
-                      className="w-10 h-10 rounded-full"
-                      alt={user?.name}
-                    />
-                  ) : (
-                    <FaUserCircle />
-                  )}
-                </Link>
-              </div>
-            )}
-          </div>
-
           <div>
             {user?._id ? (
               <button
@@ -146,6 +128,24 @@ const Header = () => {
               >
                 Login
               </Link>
+            )}
+          </div>
+          
+          <div className="relative flex justify-center">
+            {user?._id && (
+              <div className="text-3xl cursor-pointer relative flex justify-center">
+                <Link to="/admin-panel/all-products">
+                  {user?.profilePic ? (
+                    <img
+                      src={user?.profilePic}
+                      className="w-10 h-10 rounded-full"
+                      alt={user?.name}
+                    />
+                  ) : (
+                    <FaUserCircle />
+                  )}
+                </Link>
+              </div>
             )}
           </div>
         </div>

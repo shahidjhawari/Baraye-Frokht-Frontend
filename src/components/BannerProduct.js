@@ -10,13 +10,14 @@ import image2Mobile from '../assest/banner/img2_mobile.webp';
 import image3Mobile from '../assest/banner/img3_mobile.jpg';
 import image4Mobile from '../assest/banner/img4_mobile.jpg';
 import image5Mobile from '../assest/banner/img5_mobile.png';
+import banner1 from "../assest/banner1.png"
 
 const BannerProduct = () => {
     const [currentImage, setCurrentImage] = useState(0);
 
     const desktopImages = [image1, image2, image3, image4, image5];
 
-    const mobileImages = [image1Mobile, image2Mobile, image3Mobile, image4Mobile, image5Mobile];
+    const mobileImages = [banner1, image2Mobile, image3Mobile, image4Mobile, image5Mobile];
 
     const nextImage = () => {
         if (desktopImages.length - 1 > currentImage) {

@@ -107,7 +107,7 @@ const SignUp = () => {
       const dataApi = await dataResponse.json();
 
       if (dataApi.success) {
-        toast.success(dataApi.message);
+        toast(dataApi.message);
         navigate("/login");
       }
 

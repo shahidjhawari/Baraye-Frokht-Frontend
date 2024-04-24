@@ -45,7 +45,7 @@ const VerticalCardProduct = ({ category, heading }) => {
     const currentTime = new Date();
     const uploadTime = new Date(timestamp);
     const difference = Math.abs(currentTime - uploadTime);
-    const minutes = Math.floor(difference / 60000); // Convert milliseconds to minutes
+    const minutes = Math.floor(difference / 60000);
     if (minutes < 60) {
       return `${minutes} minutes ago`;
     } else {

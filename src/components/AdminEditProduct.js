@@ -73,7 +73,6 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
       }
     } catch (error) {
       console.error(error);
-      // Handle error
     }
   };
 

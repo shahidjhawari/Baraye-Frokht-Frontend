@@ -44,7 +44,7 @@ const AllProducts = () => {
       <div className="bg-white py-2 px-4 flex justify-between items-center">
         <h2 className="font-bold text-lg">All Product</h2>
         <button
-          className="border-2 bg-fuchsia-600 text-white hover:bg-amber-500 hover:text-white transition-all py-1 px-3 rounded-full "
+          className="border-8 border-light-300 bg-fuchsia-600 text-white hover:bg-amber-500 hover:text-white transition-all py-1 px-3 rounded-full "
           onClick={() => setOpenUploadProduct(true)}
         >
           Sell Products

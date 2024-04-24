@@ -25,43 +25,58 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setData((preve) => {
-      return {
-        ...preve,
-        [name]: value,
-      };
-    });
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleUploadProduct = async (e) => {
     const file = e.target.files[0];
     const uploadImageCloudinary = await uploadImage(file);
 
-    setData((preve) => {
-      return {
-        ...preve,
-        productImage: [...preve.productImage, uploadImageCloudinary.url],
-      };
-    });
+    setData((prev) => ({
+      ...prev,
+      productImage: [...prev.productImage, uploadImageCloudinary.url],
+    }));
   };
 
   const handleDeleteProductImage = async (index) => {
-    console.log("image index", index);
-
     const newProductImage = [...data.productImage];
     newProductImage.splice(index, 1);
 
-    setData((preve) => {
-      return {
-        ...preve,
-        productImage: [...newProductImage],
-      };
-    });
+    setData((prev) => ({
+      ...prev,
+      productImage: [...newProductImage],
+    }));
   };
 
-  {
-    /**upload product */
-  }
+  const handleDeleteProduct = async () => {
+    try {
+      const response = await fetch(SummaryApi.deleteProduct.url, {
+        method: SummaryApi.deleteProduct.method,
+        credentials: "include",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ productId: data._id }),
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.success) {
+        toast.success(responseData?.message);
+        onClose();
+        fetchdata();
+      } else {
+        toast.error(responseData?.message);
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle error
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -88,7 +103,7 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
   };
 
   return (
-    <div className="fixed w-full  h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+    <div className="fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
       <div className="bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
         <div className="flex justify-between items-center pb-3">
           <h2 className="font-bold text-lg">Upload Product</h2>
@@ -160,7 +175,7 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
               <div className="flex items-center gap-2">
                 {data.productImage.map((el, index) => {
                   return (
-                    <div className="relative group">
+                    <div className="relative group" key={index}>
                       <img
                         src={el}
                         alt={el}
@@ -247,10 +262,16 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
           <button className="px-3 py-2 bg-fuchsia-600 text-white mb-10 hover:bg-amber-500">
             Upload Product
           </button>
+          <button
+            className="px-3 py-2 bg-red-600 text-white hover:bg-red-500"
+            onClick={handleDeleteProduct}
+          >
+            Delete Product
+          </button>
         </form>
       </div>
 
-      {/***display image full screen */}
+      {/* Display full-screen image */}
       {openFullScreenImage && (
         <DisplayImage
           onClose={() => setOpenFullScreenImage(false)}

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import AdminEditProduct from "./AdminEditProduct";
 import displayINRCurrency from "../helpers/displayCurrency";
-import SummaryApi from "../common"; // Import SummaryApi
-import { toast } from "react-toastify"; // Import toast
+import SummaryApi from "../common"; 
+import { toast } from "react-toastify"; 
 
 const AdminProductCard = ({ data, fetchdata }) => {
   const [editProduct, setEditProduct] = useState(false);
@@ -23,20 +23,19 @@ const AdminProductCard = ({ data, fetchdata }) => {
 
       if (responseData.success) {
         toast.success(responseData?.message);
-        fetchdata(); // Remove onClose() here
+        fetchdata(); 
       } else {
         toast.error(responseData?.message);
       }
     } catch (error) {
       console.error(error);
-      // Handle error
     }
   };
 
   return (
     <div className="bg-white p-4 rounded">
       <div className="w-25">
-        <div className="w-32 h-32 flex justify-center items-center">
+        <div className="lg:flex lg:justify-center items-center lg:w-32 lg:h-32">
           <img
             src={data?.productImage[0]}
             className="mx-auto object-fill h-full"
@@ -67,7 +66,7 @@ const AdminProductCard = ({ data, fetchdata }) => {
       {editProduct && (
         <AdminEditProduct
           productData={data}
-          onClose={() => setEditProduct(false)} // Define onClose function here
+          onClose={() => setEditProduct(false)} 
           fetchdata={fetchdata}
         />
       )}

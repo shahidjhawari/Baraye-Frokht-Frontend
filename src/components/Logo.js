@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../assest/assest/bf-logo.webp"
+import logo from "../assest/assest/brlogo.webp"
 
 const Logo = ({ w, h }) => {
   return (

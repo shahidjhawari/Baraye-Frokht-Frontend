@@ -28,7 +28,6 @@ const AdminPanel = () => {
                         }
                     </div>
                     <p className='capitalize text-lg font-semibold'>{user?.name}</p>
-                    <p className='text-sm'>{user?.role === ROLE.ADMIN ? "ADMIN" : "GENERAL"}</p>
                 </div>
 
                 <div>

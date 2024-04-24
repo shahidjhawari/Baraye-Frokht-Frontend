@@ -119,7 +119,7 @@ const VerticalCardProduct = ({ category, heading }) => {
                       <p className="text-fuchsia-600 font-medium">
                         {displayINRCurrency(product?.price)}
                       </p>
-                      <p className="text-gray-500 text-sm">
+                      <p className="text-gray-500 text-sm flex items-center">
                         {calculateTimePassed(product?.createdAt)}
                       </p>
                     </div>

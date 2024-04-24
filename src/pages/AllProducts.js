@@ -47,7 +47,7 @@ const AllProducts = () => {
           className="border-2 bg-fuchsia-600 text-white hover:bg-amber-500 hover:text-white transition-all py-1 px-3 rounded-full "
           onClick={() => setOpenUploadProduct(true)}
         >
-          Upload Product
+          Sell Products
         </button>
       </div>
 

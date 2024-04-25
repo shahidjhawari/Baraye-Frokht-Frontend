@@ -114,7 +114,7 @@ const HorizontalCardProduct = ({ category, heading }) => {
                     />
                   </div>
                   <div className="p-4 grid">
-                  <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
+                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
                       {product?.productName.length > 12
                         ? product.productName.substring(0, 12) + "..."
                         : product?.productName}
@@ -123,13 +123,16 @@ const HorizontalCardProduct = ({ category, heading }) => {
                       {product?.category}
                     </p>
                     <div className="flex gap-3">
-                      <p className="text-fuchsia-600">
-                        {displayINRCurrency(product?.price)}
+                      <p className="text-fuchsia-600 font-medium">
+                        {displayINRCurrency(product?.price.toFixed(0)).replace(
+                          /\.00$/,
+                          ""
+                        )}
                       </p>
                     </div>
                     <p className="text-gray-500 text-sm flex items-center">
-                        {calculateTimePassed(product?.createdAt)}
-                      </p>
+                      {calculateTimePassed(product?.createdAt)}
+                    </p>
                   </div>
                 </Link>
               );

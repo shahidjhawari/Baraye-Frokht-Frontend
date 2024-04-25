@@ -8,6 +8,7 @@ import VerticalCardProduct from "../components/VerticalCardProduct";
 import CategroyWiseProductDisplay from "../components/CategoryWiseProductDisplay";
 import addToCart from "../helpers/addToCart";
 import Context from "../context";
+import { FaWhatsapp } from "react-icons/fa";
 
 const ProductDetails = () => {
   const [data, setData] = useState({
@@ -95,7 +96,6 @@ const ProductDetails = () => {
     navigate("/cart");
   };
 
-  // Function to handle sending WhatsApp message
   const handleWhatsAppMessage = () => {
     const message =
       "Hello, I'm interested in your product. Can you provide more details?";
@@ -169,10 +169,8 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/* product details */}
         {loading ? (
           <div className="grid gap-1 w-full">
-            {/* Placeholder for loading state */}
           </div>
         ) : (
           <div className="flex flex-col gap-1">
@@ -203,16 +201,14 @@ const ProductDetails = () => {
 
             <div>
               <p className="text-slate-600 font-medium my-1">
-                Contact Number :{" "}
+                Contact :{" "}
               </p>
-              {/* Display contact number */}
-              <p>{data.sellingPrice}</p>
-              {/* Button to trigger WhatsApp message */}
+              <p>Phone Number : 0{data.sellingPrice}</p>
               <button
                 onClick={handleWhatsAppMessage}
-                className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                className="flex items-center bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
               >
-                data.sellingPrice
+                <FaWhatsapp className="mr-2" />Message on WhatsApp
               </button>
             </div>
 

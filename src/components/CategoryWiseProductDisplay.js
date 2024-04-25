@@ -39,7 +39,8 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
         {loading
           ? loadingList.map((product, index) => {
               return (
-                <div key={index}
+                <div
+                  key={index}
                   className="w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white rounded-sm shadow "
                   style={{ marginBottom: "10px" }}
                 >
@@ -58,7 +59,8 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
             })
           : data.map((product, index) => {
               return (
-                <Link key={product._id}
+                <Link
+                  key={product._id}
                   to={"/product/" + product?._id}
                   className="w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white rounded-sm shadow "
                   onClick={scrollTop}
@@ -72,7 +74,9 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
                   </div>
                   <div className="p-4 grid gap-3">
                     <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
-                      {product?.productName}
+                      {product?.productName.length > 25
+                        ? product.productName.substring(0, 25) + "..."
+                        : product?.productName}
                     </h2>
                     <p className="capitalize text-slate-500">
                       {product?.category}

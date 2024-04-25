@@ -23,7 +23,12 @@ const VerticalCard = ({ loading, data = [] }) => {
       return `${minutes} minutes ago`;
     } else {
       const hours = Math.floor(minutes / 60);
-      return `${hours} hours ago`;
+      if (hours < 24) {
+        return `${hours} hours ago`;
+      } else {
+        const days = Math.floor(hours / 24);
+        return `${days} days ago`;
+      }
     }
   };
 

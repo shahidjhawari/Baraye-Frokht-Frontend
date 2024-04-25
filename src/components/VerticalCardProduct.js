@@ -54,7 +54,11 @@ const VerticalCardProduct = ({ category, heading }) => {
         return `${hours} hours ago`;
       } else {
         const days = Math.floor(hours / 24);
-        return `${days} days ago`;
+        if (days === 1) {
+          return `${days} day ago`;
+        } else {
+          return `${days} days ago`;
+        }
       }
     }
   };

@@ -18,6 +18,7 @@ const ProductDetails = () => {
     description: "",
     price: "",
     sellingPrice: "",
+    contactNumber: "", // Add contact number to your state
   });
   const params = useParams();
   const [loading, setLoading] = useState(true);
@@ -94,10 +95,20 @@ const ProductDetails = () => {
     navigate("/cart");
   };
 
+  // Function to handle sending WhatsApp message
+  const handleWhatsAppMessage = () => {
+    const message =
+      "Hello, I'm interested in your product. Can you provide more details?";
+    const whatsappUrl = `https://wa.me/${
+      data.sellingPrice
+    }?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
   return (
     <div className="container mx-auto p-4">
       <div className="min-h-[200px] flex flex-col lg:flex-row gap-4">
-        {/***product Image */}
+        {/* product Image */}
         <div className="h-96 flex flex-col lg:flex-row-reverse gap-4">
           <div className="h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative p-2">
             <img
@@ -107,7 +118,7 @@ const ProductDetails = () => {
               onMouseLeave={handleLeaveImageZoom}
             />
 
-            {/**product zoom */}
+            {/* product zoom */}
             {zoomImage && (
               <div className="hidden lg:block absolute min-w-[500px] overflow-hidden min-h-[400px] bg-slate-200 p-1 -right-[510px] top-0">
                 <div
@@ -158,29 +169,10 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        {/***product details */}
+        {/* product details */}
         {loading ? (
           <div className="grid gap-1 w-full">
-            <p className="bg-slate-200 animate-pulse  h-6 lg:h-8 w-full rounded-full inline-block"></p>
-            <h2 className="text-2xl lg:text-4xl font-medium h-6 lg:h-8  bg-slate-200 animate-pulse w-full"></h2>
-            <p className="capitalize text-slate-400 bg-slate-200 min-w-[100px] animate-pulse h-6 lg:h-8  w-full"></p>
-
-            <div className="text-red-600 bg-slate-200 h-6 lg:h-8  animate-pulse flex items-center gap-1 w-full"></div>
-
-            <div className="flex items-center gap-2 text-2xl lg:text-3xl font-medium my-1 h-6 lg:h-8  animate-pulse w-full">
-              <p className="text-red-600 bg-slate-200 w-full"></p>
-              <p className="text-slate-400 line-through bg-slate-200 w-full"></p>
-            </div>
-
-            <div className="flex items-center gap-3 my-2 w-full">
-              <button className="h-6 lg:h-8  bg-slate-200 rounded animate-pulse w-full"></button>
-              <button className="h-6 lg:h-8  bg-slate-200 rounded animate-pulse w-full"></button>
-            </div>
-
-            <div className="w-full">
-              <p className="text-slate-600 font-medium my-1 h-6 lg:h-8   bg-slate-200 rounded animate-pulse w-full"></p>
-              <p className=" bg-slate-200 rounded animate-pulse h-10 lg:h-12  w-full"></p>
-            </div>
+            {/* Placeholder for loading state */}
           </div>
         ) : (
           <div className="flex flex-col gap-1">
@@ -207,15 +199,21 @@ const ProductDetails = () => {
               <p className="bg-red-200 text-red-600 px-2 rounded-full inline-block w-fit">
                 {data?.brandName}
               </p>
-              {/* <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white' onClick={(e)=>handleBuyProduct(e,data?._id)}>Buy</button> */}
-              {/* <button className='border-2 border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:text-red-600 hover:bg-white' onClick={(e)=>handleAddToCart(e,data?._id)}>Add To Cart</button> */}
             </div>
 
             <div>
               <p className="text-slate-600 font-medium my-1">
                 Contact Number :{" "}
               </p>
+              {/* Display contact number */}
               <p>{data.sellingPrice}</p>
+              {/* Button to trigger WhatsApp message */}
+              <button
+                onClick={handleWhatsAppMessage}
+                className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+              >
+                data.sellingPrice
+              </button>
             </div>
 
             <div>

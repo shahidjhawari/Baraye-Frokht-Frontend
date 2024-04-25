@@ -9,6 +9,7 @@ import CategroyWiseProductDisplay from "../components/CategoryWiseProductDisplay
 import addToCart from "../helpers/addToCart";
 import Context from "../context";
 import { FaWhatsapp } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const ProductDetails = () => {
   const [data, setData] = useState({
@@ -25,6 +26,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const productImageListLoading = new Array(4).fill(null);
   const [activeImage, setActiveImage] = useState("");
+  const user = useSelector((state) => state?.user?.user);
 
   const [zoomImageCoordinate, setZoomImageCoordinate] = useState({
     x: 0,
@@ -97,12 +99,11 @@ const ProductDetails = () => {
   };
 
   const handleWhatsAppMessage = () => {
-    const message = `Aslamo Alaikum!! I am from Baraye Frokht ap ye ${
-      data?.productName
-    } ${displayINRCurrency(data.price).replace(
-      /\.00$/,
-      ""
-    )} me sell kar rahe han, me buy krna chahta hoon`;
+    const message = `Aslamo Alaikum!! I am ${
+      user.name
+    } from Baraye Frokht. Ap ye ${data?.productName} ${displayINRCurrency(
+      data.price
+    ).replace(/\.00$/, "")} me sell kar rahe han, me buy krna chahta hoon`;
     const whatsappUrl = `https://wa.me/${
       data.sellingPrice
     }?text=${encodeURIComponent(message)}`;

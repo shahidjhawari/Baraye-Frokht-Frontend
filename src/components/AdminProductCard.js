@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import AdminEditProduct from "./AdminEditProduct";
 import displayINRCurrency from "../helpers/displayCurrency";
-import SummaryApi from "../common"; 
-import { toast } from "react-toastify"; 
+import SummaryApi from "../common";
+import { toast } from "react-toastify";
 
 const AdminProductCard = ({ data, fetchdata }) => {
   const [editProduct, setEditProduct] = useState(false);
@@ -23,7 +23,7 @@ const AdminProductCard = ({ data, fetchdata }) => {
 
       if (responseData.success) {
         toast.success(responseData?.message);
-        fetchdata(); 
+        fetchdata();
       } else {
         toast.error(responseData?.message);
       }
@@ -31,6 +31,11 @@ const AdminProductCard = ({ data, fetchdata }) => {
       console.error(error);
     }
   };
+
+  const productNameDisplay =
+    data.productName.length > 15
+      ? data.productName.substring(data.productName.length - 15) + "..."
+      : data.productName;
 
   return (
     <div className="bg-white p-4 rounded">
@@ -41,7 +46,7 @@ const AdminProductCard = ({ data, fetchdata }) => {
             className="mx-auto object-fill h-full"
           />
         </div>
-        <h1 className="text-ellipsis line-clamp-2">{data.productName}</h1>
+        <h1 className="text-ellipsis line-clamp-2">{productNameDisplay}</h1>
 
         <div>
           <p className="font-semibold">{displayINRCurrency(data.price)}</p>
@@ -66,7 +71,7 @@ const AdminProductCard = ({ data, fetchdata }) => {
       {editProduct && (
         <AdminEditProduct
           productData={data}
-          onClose={() => setEditProduct(false)} 
+          onClose={() => setEditProduct(false)}
           fetchdata={fetchdata}
         />
       )}

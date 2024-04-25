@@ -4,6 +4,7 @@ import displayINRCurrency from "../helpers/displayCurrency";
 import Context from "../context";
 import addToCart from "../helpers/addToCart";
 import { Link } from "react-router-dom";
+import { calculateTimePassed } from "./Time";
 
 const VerticalCard = ({ loading, data = [] }) => {
   const loadingList = new Array(13).fill(null);
@@ -12,24 +13,6 @@ const VerticalCard = ({ loading, data = [] }) => {
   const handleAddToCart = async (e, id) => {
     await addToCart(e, id);
     fetchUserAddToCart();
-  };
-
-  const calculateTimePassed = (timestamp) => {
-    const currentTime = new Date();
-    const uploadTime = new Date(timestamp);
-    const difference = Math.abs(currentTime - uploadTime);
-    const minutes = Math.floor(difference / 60000);
-    if (minutes < 60) {
-      return `${minutes} minutes ago`;
-    } else {
-      const hours = Math.floor(minutes / 60);
-      if (hours < 24) {
-        return `${hours} hours ago`;
-      } else {
-        const days = Math.floor(hours / 24);
-        return `${days} days ago`;
-      }
-    }
   };
 
   return (

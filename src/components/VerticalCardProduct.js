@@ -110,7 +110,9 @@ const VerticalCardProduct = ({ category, heading }) => {
                   </div>
                   <div className="p-4 grid gap-3">
                     <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
-                      {product?.productName}
+                      {product?.productName.length > 25
+                        ? product.productName.substring(0, 25) + "..."
+                        : product?.productName}
                     </h2>
                     <p className="capitalize text-slate-500">
                       {product?.category}

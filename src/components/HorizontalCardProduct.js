@@ -109,8 +109,10 @@ const HorizontalCardProduct = ({ category, heading }) => {
                     />
                   </div>
                   <div className="p-4 grid">
-                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
-                      {product?.productName}
+                  <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
+                      {product?.productName.length > 12
+                        ? product.productName.substring(0, 12) + "..."
+                        : product?.productName}
                     </h2>
                     <p className="capitalize text-slate-500">
                       {product?.category}

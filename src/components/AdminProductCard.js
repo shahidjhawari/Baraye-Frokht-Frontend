@@ -49,8 +49,9 @@ const AdminProductCard = ({ data, fetchdata }) => {
         <h1 className="text-ellipsis line-clamp-2">{productNameDisplay}</h1>
 
         <div>
-          <p className="font-semibold">{displayINRCurrency(data.price)}</p>
-
+          <p className="text-fuchsia-600">
+            {displayINRCurrency(data.price).replace(/\.00$/, "")}
+          </p>
           <div className="flex">
             <div
               className="w-fit ml-auto p-2 bg-green-100 hover:bg-green-600 rounded-full hover:text-white cursor-pointer"
@@ -67,7 +68,6 @@ const AdminProductCard = ({ data, fetchdata }) => {
           </div>
         </div>
       </div>
-
       {editProduct && (
         <AdminEditProduct
           productData={data}

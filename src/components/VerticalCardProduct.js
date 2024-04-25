@@ -124,7 +124,10 @@ const VerticalCardProduct = ({ category, heading }) => {
                     </p>
                     <div className="flex gap-3">
                       <p className="text-fuchsia-600 font-medium">
-                        {displayINRCurrency(product?.price)}
+                        {displayINRCurrency(product?.price.toFixed(0)).replace(
+                          /\.00$/,
+                          ""
+                        )}
                       </p>
                       <p className="text-gray-500 text-sm flex items-center">
                         {calculateTimePassed(product?.createdAt)}

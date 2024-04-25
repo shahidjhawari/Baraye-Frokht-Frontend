@@ -31,6 +31,24 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
     fetchData();
   }, []);
 
+  const calculateTimePassed = (timestamp) => {
+    const currentTime = new Date();
+    const uploadTime = new Date(timestamp);
+    const difference = Math.abs(currentTime - uploadTime);
+    const minutes = Math.floor(difference / 60000);
+    if (minutes < 60) {
+      return `${minutes} minutes ago`;
+    } else {
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) {
+        return `${hours} hours ago`;
+      } else {
+        const days = Math.floor(hours / 24);
+        return `${days} days ago`;
+      }
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 my-6 relative">
       <h2 className="text-2xl font-semibold py-4">{heading}</h2>
@@ -84,6 +102,9 @@ const CategroyWiseProductDisplay = ({ category, heading }) => {
                     <div className="flex gap-3">
                       <p className="text-fuchsia-600 font-medium">
                         {displayINRCurrency(product?.price)}
+                      </p>
+                      <p className="text-gray-500 text-sm flex items-center">
+                        {calculateTimePassed(product?.createdAt)}
                       </p>
                     </div>
                   </div>

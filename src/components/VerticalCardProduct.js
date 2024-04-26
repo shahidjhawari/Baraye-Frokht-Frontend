@@ -6,7 +6,6 @@ import displayINRCurrency from "../helpers/displayCurrency";
 import addToCart from "../helpers/addToCart";
 import Context from "../context";
 import { calculateTimePassed } from "./Time";
-
 import "./VerticalCardProduct.css";
 
 const VerticalCardProduct = ({ category, heading }) => {

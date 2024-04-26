@@ -242,6 +242,7 @@ const UploadProduct = ({ onClose, fetchData }) => {
             name="description"
             value={data.description}
             maxLength={1000}
+            required
           ></textarea>
 
           <button className="px-3 py-2 bg-fuchsia-600 text-white mb-10 hover:bg-amber-500">

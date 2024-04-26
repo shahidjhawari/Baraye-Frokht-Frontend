@@ -5,7 +5,9 @@ import fetchCategoryWiseProduct from "../helpers/fetchCategoryWiseProduct";
 import displayINRCurrency from "../helpers/displayCurrency";
 import addToCart from "../helpers/addToCart";
 import Context from "../context";
-import {calculateTimePassed} from './Time';
+import { calculateTimePassed } from "./Time";
+
+import "./VerticalCardProduct.css";
 
 const VerticalCardProduct = ({ category, heading }) => {
   const [data, setData] = useState([]);
@@ -38,6 +40,7 @@ const VerticalCardProduct = ({ category, heading }) => {
   const scrollRight = () => {
     scrollElement.current.scrollLeft += 300;
   };
+
   const scrollLeft = () => {
     scrollElement.current.scrollLeft -= 300;
   };
@@ -47,7 +50,7 @@ const VerticalCardProduct = ({ category, heading }) => {
       <h2 className="text-2xl font-semibold py-4">{heading}</h2>
 
       <div
-        className="flex items-center gap-4 md:gap-6 overflow-x-scroll scrollbar-none transition-all"
+        className="flex items-center gap-4 md:gap-6 overflow-x-scroll custom-scrollbar transition-all"
         ref={scrollElement}
       >
         <button

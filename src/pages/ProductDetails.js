@@ -99,11 +99,17 @@ const ProductDetails = () => {
   };
 
   const handleWhatsAppMessage = () => {
-    const message = `Aslamo Alaikum!! I am ${
-      user.name
-    } from Baraye Frokht. Ap ye ${data?.productName} ${displayINRCurrency(
-      data.price
-    ).replace(/\.00$/, "")} me sell kar rahe han, me buy krna chahta hoon`;
+    let message = `Aslamo Alaikum!! I am `;
+    if (user && user.name) {
+      message += `${user.name}`;
+    }
+    message += ` from Baraye Frokht App. Ap ye ${
+      data?.productName
+    } - ${displayINRCurrency(data.price).replace(
+      /\.00$/,
+      ""
+    )} me sell kar rahe han, me buy krna chahta hoon`;
+
     const whatsappUrl = `https://wa.me/${
       data.sellingPrice
     }?text=${encodeURIComponent(message)}`;

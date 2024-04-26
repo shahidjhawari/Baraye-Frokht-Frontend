@@ -204,7 +204,7 @@ const UploadProduct = ({ onClose, fetchData }) => {
           />
 
           <label htmlFor="sellingPrice" className="mt-3">
-            Contact Number :
+            Contact or Watsapp Number :
           </label>
           <input
             type="number"
@@ -228,6 +228,8 @@ const UploadProduct = ({ onClose, fetchData }) => {
             name="brandName"
             onChange={handleOnChange}
             className="p-2 bg-slate-100 border rounded"
+            minLength={20}
+            maxLength={60}
             required
           />
 

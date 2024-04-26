@@ -236,11 +236,12 @@ const UploadProduct = ({ onClose, fetchData }) => {
           </label>
           <textarea
             className="h-28 bg-slate-100 border resize-none p-1"
-            placeholder="enter product description"
+            placeholder="Description should not exceed 1000 characters"
             rows={3}
             onChange={handleOnChange}
             name="description"
             value={data.description}
+            maxLength={1000}
           ></textarea>
 
           <button className="px-3 py-2 bg-fuchsia-600 text-white mb-10 hover:bg-amber-500">

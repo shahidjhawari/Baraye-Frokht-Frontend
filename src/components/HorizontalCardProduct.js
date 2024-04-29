@@ -42,6 +42,11 @@ const HorizontalCardProduct = ({ category, heading }) => {
     scrollElement.current.scrollLeft -= 300;
   };
 
+  // Sort data by createdAt before rendering
+  const sortedData = [...data].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+
   return (
     <div className="container mx-auto px-4 my-6 relative">
       <h2 className="text-2xl font-semibold py-4">{heading}</h2>
@@ -83,7 +88,7 @@ const HorizontalCardProduct = ({ category, heading }) => {
                 </div>
               );
             })
-          : data.map((product, index) => {
+          : sortedData.map((product, index) => {
               return (
                 <Link
                   key={product._id}

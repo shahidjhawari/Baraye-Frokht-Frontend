@@ -56,7 +56,6 @@ const ProductDetails = () => {
     setActiveImage(dataReponse?.data?.productImage[0]);
   };
 
-  console.log("data", data);
 
   useEffect(() => {
     fetchProductDetails();
@@ -70,7 +69,6 @@ const ProductDetails = () => {
     (e) => {
       setZoomImage(true);
       const { left, top, width, height } = e.target.getBoundingClientRect();
-      console.log("coordinate", left, top, width, height);
 
       const x = (e.clientX - left) / width;
       const y = (e.clientY - top) / height;

@@ -20,7 +20,7 @@ const ProductDetails = () => {
     description: "",
     price: "",
     sellingPrice: "",
-    contactNumber: "", // Add contact number to your state
+    contactNumber: "",
   });
   const params = useParams();
   const [loading, setLoading] = useState(true);
@@ -55,7 +55,6 @@ const ProductDetails = () => {
     setData(dataReponse?.data);
     setActiveImage(dataReponse?.data?.productImage[0]);
   };
-
 
   useEffect(() => {
     fetchProductDetails();
@@ -207,6 +206,7 @@ const ProductDetails = () => {
 
             <div>
               <p className="text-slate-600 font-medium my-1">Contact : </p>
+              <p>Name : {data?.userName}</p>
               <p>Phone Number : 0{data.sellingPrice}</p>
               <button
                 onClick={handleWhatsAppMessage}

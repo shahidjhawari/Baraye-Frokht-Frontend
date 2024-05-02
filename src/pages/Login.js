@@ -50,7 +50,7 @@ const Login = () => {
     if (dataApi.success) {
       localStorage.setItem("token", dataApi.data); 
 
-      toast(dataApi.message);
+      toast(dataApi.message, {autoClose: 1500,});
       navigate("/");
       fetchUserDetails();
       fetchUserAddToCart();

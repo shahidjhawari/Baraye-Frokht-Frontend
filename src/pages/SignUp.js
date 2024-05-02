@@ -107,7 +107,7 @@ const SignUp = () => {
       const dataApi = await dataResponse.json();
 
       if (dataApi.success) {
-        toast(dataApi.message);
+        toast(dataApi.message, {autoClose: 1500,});
         navigate("/login");
       }
 

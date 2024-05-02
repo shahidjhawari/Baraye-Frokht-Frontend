@@ -206,6 +206,7 @@ const ProductDetails = () => {
 
             <div>
               <p className="text-slate-600 font-medium my-1">Contact : </p>
+              <img src={data?.profilePic} alt="User Profile Picture" />
               <p>Name : {data?.userName}</p>
               <p>Phone Number : 0{data.sellingPrice}</p>
               <button

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../assest/assest/newlogo.webp"
+import logo from "../assest/assest/gifcompresslogo.gif"
 
 const Logo = ({ w, h }) => {
   return (

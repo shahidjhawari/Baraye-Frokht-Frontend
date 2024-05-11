@@ -107,12 +107,15 @@ const ProductDetails = () => {
       /\.00$/,
       ""
     )} me sell kar rahe han, me buy krna chahta hoon`;
-
+  
     const whatsappUrl = `https://wa.me/${
       data.sellingPrice
     }?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+  
+    // Open WhatsApp URL within the WebView
+    window.location.href = whatsappUrl;
   };
+  
 
 
   return (
